@@ -8,3 +8,5 @@ h5py
 matplotlib
 pillow
 gensim
+pypdf2
+python-docx
