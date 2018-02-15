@@ -1,18 +1,3 @@
-# python-resume-parser-and-analyzer
-
-python project that parses and analyze a number resumes to discover their strengths
-
-The objective of this project is to use Keras and Deep Learning such as CNN and recurrent neural network to automate the
-task of parsing a chinese resume. At the moment the rule-based resume parser has been implemented.
-
-# Usage
-
-### Rule-based Chinese Resume Parser
-
-The [sample code](demo/explore_resume_dir.py) below shows how to scan all the resumes (in PDF and DOCX formats) from a 
-particular directory and print out a summary from the resume parser if information extracted are available:
-
-```python
 from keras_cn_parser_and_analyzer.library.parser import ResumeParser
 from keras_cn_parser_and_analyzer.library.utility.io_utils import read_pdf_and_docx
 
@@ -38,5 +23,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-```
