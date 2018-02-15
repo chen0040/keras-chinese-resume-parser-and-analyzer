@@ -1,10 +1,10 @@
-from keras_cn_parser_and_analyzer.library.parser import ResumeParser
+from keras_cn_parser_and_analyzer.library.rule_based_parser import ResumeParser
 from keras_cn_parser_and_analyzer.library.utility.io_utils import read_pdf_and_docx
 
 
 def main():
     data_dir_path = './data' # directory to scan for any pdf and docx files
-    collected = read_pdf_and_docx(data_dir_path)
+    collected = read_pdf_and_docx(data_dir_path, command_logging=True)
     for file_path, file_content in collected.items():
 
         print('parsing file: ', file_path)

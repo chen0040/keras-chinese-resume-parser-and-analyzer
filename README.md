@@ -20,7 +20,7 @@ The [sample code](demo/rule_base_parser.py) below shows how to scan all the resu
 particular directory and print out a summary from the resume parser if information extracted are available:
 
 ```python
-from keras_cn_parser_and_analyzer.library.parser import ResumeParser
+from keras_cn_parser_and_analyzer.library.rule_based_parser import ResumeParser
 from keras_cn_parser_and_analyzer.library.utility.io_utils import read_pdf_and_docx
 
 
