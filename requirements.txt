@@ -7,6 +7,6 @@ scipy
 h5py
 matplotlib
 pillow
-pypdf2
+pdfminer.six
 python-docx
 snownlp

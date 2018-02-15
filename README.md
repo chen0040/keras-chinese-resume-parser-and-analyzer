@@ -10,7 +10,7 @@ task of parsing a chinese resume. At the moment the rule-based resume parser has
 ### Features 
 
 * Chinese NLP using SnowNLP
-* Extract texts using pyPDF2 and python-docx from PDF nad DOCX
+* Extract chinese texts using pdfminer.six and python-docx from PDF nad DOCX
 
 # Usage
 
