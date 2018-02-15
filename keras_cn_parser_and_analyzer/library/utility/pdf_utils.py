@@ -23,4 +23,9 @@ def pdf_to_text(fname, pages=None):
     converter.close()
     text = output.getvalue()
     output.close()
-    return [text]
+    result = []
+    for line in text.split('\n'):
+        line2 = line.strip()
+        if line2 != '':
+            result.append(line2)
+    return result

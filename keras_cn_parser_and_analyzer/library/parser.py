@@ -149,10 +149,14 @@ class ResumeParser(object):
             length = 4
             index = line.find('开发工具')
 
+        result = None
         if index == -1:
             return None
         else:
-            return line[index+length:].replace(':', '')
+            result = line[index+length:].replace(':', '').strip()
+            if result == '':
+                return None
+        return result
 
     def extract_ethnicity(self, s, line):
         parts = line.split(' ')

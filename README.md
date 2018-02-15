@@ -1,6 +1,6 @@
-# python-resume-parser-and-analyzer
+# keras-chinese-resume-parser-and-analyzer
 
-python project that parses and analyze a number resumes to discover their strengths
+Deep learning project that parses and analyze chinese resumes.
 
 The objective of this project is to use Keras and Deep Learning such as CNN and recurrent neural network to automate the
 task of parsing a chinese resume. At the moment the rule-based resume parser has been implemented.
