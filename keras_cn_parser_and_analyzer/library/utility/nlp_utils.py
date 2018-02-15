@@ -1,5 +1,4 @@
 from snownlp import SnowNLP
-import jieba.posseg as pseg
 
 
 def print_snow(text):
@@ -17,9 +16,3 @@ def print_snow(text):
     print('+++++++++++++++++++++++++++++++++++++')
 
 
-def print_jieba(text):
-    words = pseg.cut(text)
-    for word, flag in words:
-        print('%s %s' % (word, flag))
-
-    print('======================================')

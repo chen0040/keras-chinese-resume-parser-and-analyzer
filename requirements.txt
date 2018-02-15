@@ -7,8 +7,6 @@ scipy
 h5py
 matplotlib
 pillow
-gensim
 pypdf2
 python-docx
 snownlp
-jieba
