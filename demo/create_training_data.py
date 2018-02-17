@@ -48,9 +48,11 @@ class AnnotatorGui(Frame):
             table_content[_line_index][2] = line_label
             line_label_button["text"] = "Type: " + line_labels[line_label]
 
-        line_type_button = Button(self, text="Type: Unknown", width=25, command=lambda: line_type_button_click(line_index))
+        line_type_button = Button(self, text="Type: Unknown", width=25,
+                                  command=lambda: line_type_button_click(line_index))
         line_type_button.grid(row=line_index, column=2, sticky=W + E + N + S)
-        line_label_button = Button(self, text='Label: Unknown', width=25, command=lambda: line_label_button_click(line_index))
+        line_label_button = Button(self, text='Label: Unknown', width=25,
+                                   command=lambda: line_label_button_click(line_index))
         line_label_button.grid(row=line_index, column=3, sticky=W + E + N + S)
 
 
@@ -84,7 +86,6 @@ def gui_annotate(training_data_dir_path, index, file_path, file_content):
                 print('write line: ', line)
                 f.write(str(data_type) + '\t' + str(label) + '\t' + line_content)
                 f.write('\n')
-
 
     root.protocol("WM_DELETE_WINDOW", callback)
     gui.mainloop()
