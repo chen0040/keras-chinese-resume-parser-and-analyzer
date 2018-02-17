@@ -3,7 +3,18 @@
 Deep learning project that parses and analyze chinese resumes.
 
 The objective of this project is to use Keras and Deep Learning such as CNN and recurrent neural network to automate the
-task of parsing a chinese resume. At the moment the rule-based resume parser has been implemented.
+task of parsing a chinese resume. 
+
+### Completed Task:
+
+* At the moment the rule-based resume parser has been implemented.
+* Tkinter-based GUI tool to generate and annotate training data from pdf and docx files
+
+### TO-DO List:
+
+* Deep learning multi-class classification using recurrent and cnn networks for
+    * line type: classify each line of text extracted from pdf and docx file on whether it is a header, meta-data, or content
+    * line label classify each line of text extracted from pdf and docx file on whether it implies experience, education, etc.
 
 # Overview
 
