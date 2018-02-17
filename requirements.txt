@@ -10,3 +10,4 @@ pillow
 pdfminer.six
 python-docx
 snownlp
+
