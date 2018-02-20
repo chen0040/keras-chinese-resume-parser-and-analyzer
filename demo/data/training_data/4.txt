@@ -1,0 +1,39 @@
+meta	others	段雨佳
+meta	others	 176-8892-0987
+meta	others	目前所在地：深圳
+meta	others	|  jj1991@qq.com
+meta	others	|  jjjasperd
+meta	others	“Quality is more important than quantity. One home run is much better than two doubles.”
+header	knowledge	技能清单
+content	knowledge	Java Spring Framework Spring MVC, Spring boot, Spring 4, Core, Context, AOP, DAO
+content	knowledge	J2EE Java, Java EE, JSP, JSTL, Servlet, JDBC, JMS
+content	knowledge	Java ORM Framework JPA, Hibernate 4
+content	knowledge	Java Web Service SOAP, RESTful
+content	knowledge	JUnit 4, Mokito
+content	knowledge	JAVA Test Tools
+content	knowledge	数据库 Oracle 10g/11g, MySQL 5, Neo4j
+content	knowledge	操作系统 Windows, Mac, Linux (Ubuntu)
+content	knowledge	Web/Application Server Tomcat 6/7/8, WebLogic
+content	knowledge	版本控制 SVN, Git
+content	knowledge	前端技术 HTML 5, CSS, JavaScpript, jQuery, AngularJS, Bootstrap, JSON
+content	knowledge	报告工具 JasperReport
+content	knowledge	项目部署 Maven
+content	knowledge	设计与分析 StarUML, COCOMO
+content	knowledge	软件工程 Agile-Scrum, Water fall
+content	knowledge	开发工具 Eclipse, IntelliJ IDEA, Sublime 2, Atom, Navicat
+header	education	教育经历
+content	education	美国新泽西理工学院 (New Jersey Institute of Technology)
+content	education	硕士研究生 | 计算机科学与技术 | 软件工程方向
+content	education	香港浸会大学
+content	education	学士本科 | 计算机科学与技术
+header	experience	工作经历
+content	experience	深圳天玑财富管理有限公司
+content	experience	JAVA 开发工程师
+content	experience	新泽西, 美国
+content	experience	2014.09 - 2016.01
+content	experience	香港, 中国
+content	experience	2010.09 - 2014.06
+content	experience	深圳, 广东
+content	experience	2017.03 - 2017.10
+content	experience	天玑金服官网 | 天玑金服官网后台 | 天玑金服官网后台 V2.0
+content	experience	•• 参与官网与两代后台的 SDLC，讨论、收集需求，分析、设计文档，开发、创造测试用例并实施应用。

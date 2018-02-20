@@ -19,7 +19,12 @@ def max_length(lines):
 
 def word_tokenize(text):
     s = SnowNLP(text)
-    return s.words
+    result = list()
+    for w in s.words:
+        word = w.strip()
+        if word != '':
+            result.append(word)
+    return result
 
 
 # encode a list of lines

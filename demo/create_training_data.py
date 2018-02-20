@@ -55,6 +55,11 @@ class AnnotatorGui(Frame):
                                    command=lambda: line_label_button_click(line_index))
         line_label_button.grid(row=line_index, column=3, sticky=W + E + N + S)
 
+        if line[1] != -1:
+            line_type_button["text"] = "Type: " + line_types[line[1]]
+        if line[2] != -1:
+            line_label_button["text"] = "Type: " + line_labels[line[2]]
+
 
 def command_line_annotate(training_data_dir_path, index, file_path, file_content):
     with open(os.path.join(training_data_dir_path, str(index) + '.txt'), 'wt', encoding='utf8') as f:
@@ -63,18 +68,31 @@ def command_line_annotate(training_data_dir_path, index, file_path, file_content
             data_type = input('Type for line #' + str(line_index) + ' (options: 0=header 1=meta 2=content):')
             label = input('Label for line #' + str(line_index) +
                           ' (options: 0=experience 1=knowledge 2=education 3=project 4=others')
-            f.write(data_type + '\t' + label + '\t' + line)
+            data_type = int(data_type)
+            label = int(label)
+            f.write(line_types[data_type] + '\t' + line_labels[label] + '\t' + line)
             f.write('\n')
+
+
+def guess_line_type(line):
+    return -1
+
+
+def guess_line_label(line):
+    return -1
 
 
 def gui_annotate(training_data_dir_path, index, file_path, file_content):
     root = Tk()
-    table_content = [[line, -1, -1] for line in file_content]
+    table_content = [[line, guess_line_type(line), guess_line_label(line)] for line in file_content]
     gui = AnnotatorGui(root, table_content)
 
     def callback():
         root.destroy()
-        with open(os.path.join(training_data_dir_path, str(index) + '.txt'), 'wt', encoding='utf8') as f:
+        output_file_path = os.path.join(training_data_dir_path, str(index) + '.txt')
+        if os.path.exists(output_file_path):
+            return
+        with open(output_file_path, 'wt', encoding='utf8') as f:
             for line in table_content:
                 line_content = line[0]
                 data_type = line[1]
@@ -84,7 +102,7 @@ def gui_annotate(training_data_dir_path, index, file_path, file_content):
                     continue
 
                 print('write line: ', line)
-                f.write(str(data_type) + '\t' + str(label) + '\t' + line_content)
+                f.write(line_types[data_type] + '\t' + line_labels[label] + '\t' + line_content)
                 f.write('\n')
 
     root.protocol("WM_DELETE_WINDOW", callback)

@@ -1,0 +1,38 @@
+meta	others	李    广
+meta	others	(86) 137-9445-2412                  ligbit@163.com
+header	others	求职意向
+meta	others	教育背景
+content	others	Java 开发工程师，全职，深圳
+content	education	北京理工大学（985）
+content	education	2014.9--2017.3
+content	education	2010.9--2014.6   北京理工大学
+header	project	项目经历
+content	education	机械工程
+content	education	工学硕士
+content	education	机械工程及自动化    工学学士
+content	education	专业排名：前 10%
+content	education	专业排名：前 10%
+content	experience	2017.10--2018.1  博客网站系统开发
+content	project	●  该博客网站具有用户注册与登录，撰写日志，查看博文等基本功能；
+content	project	●  使用 Spring 负责对象依赖创建，Struts2 负责控制转发，Hibernate 负责数据持久化。
+content	project	2017.6--2017.9  电商购物系统开发
+content	project	●  类天猫购物系统具有类似天猫购物网站的基本功能，包括用户注册、登录，商品显示、分类、
+content	project	购买等基本操作流程；
+content	project	●  该系统使用典型的 SSM 框架搭建而成；
+content	project	●  使用 Nginx 进行负载均衡控制。
+content	project	2014.5--2014.10  信息投票系统开发
+content	project	●  该信息投票系统用户分为管理员和普通用户，管理员具有普通用户账户控制权限，能够创建
+content	project	新的投票话题以及删除过时的话题，普通用户可以针对既有的话题进行投票；
+content	project	●  该系统使用 Struts2 框架开发，JDBC 进行数据持久化。
+header	experience	工作经历
+content	experience	2017.4--至今
+content	experience	深圳开立生物医疗科技股份有限公司  结构工程师
+content	experience	●  负责某型号内窥镜产品需求提取、结构开发以及设计文档撰写等工作；
+content	experience	●  完整参与了某型号内窥镜的开发流程，并协调完成样机试制工作。
+content	experience	2014.5--2014.10  中高软信息技术（北京）有限公司
+content	experience	Java 软件开发实习生
+content	experience	●  参与相关项目的需求分析、设计、开发以及测试等几个阶段；
+content	experience	●  配合项目经理完成相关任务目标。
+header	knowledge	个人技能
+content	knowledge	●  熟悉产品开发流程，了解常见设计模式；
+content	knowledge	●  熟悉 Java 基础知识，具有较好的面向对象意识；
