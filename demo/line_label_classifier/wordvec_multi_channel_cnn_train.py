@@ -12,7 +12,7 @@ def main():
     output_dir_path = './models'
     data_file_path = '../data/training_data'
     text_data_model = fit_text(data_file_path)
-    text_label_pairs = load_text_label_pairs(data_file_path)
+    text_label_pairs = load_text_label_pairs(data_file_path, label_type='line_label')
 
     classifier = WordVecMultiChannelCnn()
     batch_size = 64

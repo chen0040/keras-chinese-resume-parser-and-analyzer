@@ -12,7 +12,7 @@ def main():
 
     model_dir_path = './models'
     data_file_path = '../data/training_data'
-    text_label_pairs = load_text_label_pairs(data_file_path)
+    text_label_pairs = load_text_label_pairs(data_file_path, label_type='line_label')
 
     classifier = WordVecLstmSoftmax()
     classifier.load_model(model_dir_path=model_dir_path)
