@@ -10,9 +10,9 @@ def main():
     np.random.seed(random_state)
 
     output_dir_path = './models'
-    data_file_path = '../data/training_data'
-    text_data_model = fit_text(data_file_path)
-    text_label_pairs = load_text_label_pairs(data_file_path)
+    data_dir_path = '../data/training_data'
+    text_data_model = fit_text(data_dir_path)
+    text_label_pairs = load_text_label_pairs(data_dir_path)
 
     classifier = WordVecBidirectionalLstmSoftmax()
     batch_size = 64
