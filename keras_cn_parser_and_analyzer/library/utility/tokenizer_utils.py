@@ -1,9 +1,11 @@
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-import nltk
 
 
 # fit a tokenizer
+from snownlp import SnowNLP
+
+
 def create_tokenizer(lines):
     tokenizer = Tokenizer()
     tokenizer.fit_on_texts(lines)
@@ -15,8 +17,9 @@ def max_length(lines):
     return max([len(s.split()) for s in lines])
 
 
-def word_tokenize(line):
-    return nltk.word_tokenize(line)
+def word_tokenize(text):
+    s = SnowNLP(text)
+    return s.words
 
 
 # encode a list of lines
