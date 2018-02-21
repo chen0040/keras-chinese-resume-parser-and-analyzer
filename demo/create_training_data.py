@@ -1,9 +1,8 @@
 import os
+
+from keras_cn_parser_and_analyzer.library.dl_based_parser import line_types, line_labels
 from keras_cn_parser_and_analyzer.library.utility.io_utils import read_pdf, read_pdf_and_docx
 from tkinter import *
-
-line_labels = {0: 'experience', 1: 'knowledge', 2: 'education', 3: 'project', 4: 'others'}
-line_types = {0: 'header', 1: 'meta', 2: 'content'}
 
 
 class AnnotatorGui(Frame):
