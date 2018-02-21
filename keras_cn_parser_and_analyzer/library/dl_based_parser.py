@@ -25,6 +25,8 @@ class ResumeParser(object):
         self.experience = []
         self.knowledge = []
         self.project = []
+        self.meta = list()
+        self.header = list()
         self.unknown = True
         self.raw = None
 
@@ -82,26 +84,26 @@ class ResumeParser(object):
                                                  random_state=random_state)
         return history
 
-    def extract_education(self, s, text):
-        label = self.line_label_classifier.predict_class(sentence=text)
+    @staticmethod
+    def extract_education(label, text):
         if label == 'education':
             return text
         return None
 
-    def extract_project(self, s, text):
-        label = self.line_label_classifier.predict_class(sentence=text)
+    @staticmethod
+    def extract_project(label, text):
         if label == 'project':
             return text
         return None
 
-    def extract_knowledge(self, s, text):
-        label = self.line_label_classifier.predict_class(sentence=text)
+    @staticmethod
+    def extract_knowledge(label, text):
         if label == 'knowledge':
             return text
         return None
 
-    def extract_experience(self, s, text):
-        label = self.line_label_classifier.predict_class(sentence=text)
+    @staticmethod
+    def extract_experience(label, text):
         if label == 'experience':
             return text
         return None
@@ -111,16 +113,18 @@ class ResumeParser(object):
         for p in texts:
             if len(p) > 10:
                 s = SnowNLP(p)
+                line_label = self.line_label_classifier.predict_class(sentence=p)
+                line_type = self.line_type_classifier.predict_class(sentence=p)
                 unknown = True
                 name = extract_name(s, p)
                 email = extract_email(s, p)
                 sex = extract_sex(s, p)
                 race = extract_ethnicity(s, p)
-                education = self.extract_education(s, p)
-                project = self.extract_project(s, p)
-                experience = self.extract_experience(s, p)
+                education = self.extract_education(line_label, p)
+                project = self.extract_project(line_label, p)
+                experience = self.extract_experience(line_label, p)
                 objective = extract_objective(s, p)
-                knowledge = self.extract_knowledge(s, p)
+                knowledge = self.extract_knowledge(line_label, p)
                 mobile = extract_mobile(s, p)
                 if name is not None:
                     self.name = name
@@ -153,6 +157,12 @@ class ResumeParser(object):
                     self.mobile = mobile
                     unknown = False
 
+                if line_type == 'meta':
+                    self.meta.append(p)
+                    unknown = False
+                if line_type == 'header':
+                    self.header.append(p)
+
                 if unknown is False:
                     self.unknown = unknown
 
@@ -173,17 +183,19 @@ class ResumeParser(object):
             text += 'sex: {}\n'.format(self.sex)
         if self.objective is not None:
             text += 'objective: {}\n'.format(self.objective)
-        if len(self.experience) > 0:
-            for ex in self.experience:
-                text += 'experience: {}\n'.format(ex)
-        if len(self.education) > 0:
-            for edu in self.education:
-                text += 'education: {}\n'.format(edu)
-        if len(self.knowledge) > 0:
-            for knowledge in self.knowledge:
-                text += 'knowledge: {}\n'.format(knowledge)
-        if len(self.project) > 0:
-            for project in self.project:
-                text += 'project: {}\n'.format(project)
+
+        for ex in self.experience:
+            text += 'experience: {}\n'.format(ex)
+
+        for edu in self.education:
+            text += 'education: {}\n'.format(edu)
+
+        for knowledge in self.knowledge:
+            text += 'knowledge: {}\n'.format(knowledge)
+        for project in self.project:
+            text += 'project: {}\n'.format(project)
+
+        for meta_data in self.meta:
+            text += 'meta: {}\n'.format(meta_data)
 
         return text.strip()
