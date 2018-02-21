@@ -9,7 +9,7 @@ def main():
         print('parsing file: ', file_path)
 
         parser = ResumeParser()
-        parser.load_model('./models/line_label')
+        parser.load_model('./models')
         parser.parse(file_content)
         print(parser.raw)  # print out the raw contents extracted from pdf or docx files
 

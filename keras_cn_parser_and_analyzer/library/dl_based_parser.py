@@ -4,7 +4,7 @@ from keras_cn_parser_and_analyzer.library.classifiers.lstm import WordVecBidirec
 from keras_cn_parser_and_analyzer.library.utility.parser_rules import *
 from keras_cn_parser_and_analyzer.library.utility.simple_data_loader import load_text_label_pairs
 from keras_cn_parser_and_analyzer.library.utility.text_fit import fit_text
-
+import os
 
 line_labels = {0: 'experience', 1: 'knowledge', 2: 'education', 3: 'project', 4: 'others'}
 line_types = {0: 'header', 1: 'meta', 2: 'content'}
@@ -14,6 +14,7 @@ class ResumeParser(object):
 
     def __init__(self):
         self.line_label_classifier = WordVecBidirectionalLstmSoftmax()
+        self.line_type_classifier = WordVecBidirectionalLstmSoftmax()
         self.email = None
         self.name = None
         self.sex = None
@@ -28,11 +29,26 @@ class ResumeParser(object):
         self.raw = None
 
     def load_model(self, model_dir_path):
-        self.line_label_classifier.load_model(model_dir_path=model_dir_path)
+        self.line_label_classifier.load_model(model_dir_path=os.path.join(model_dir_path, 'line_label'))
+        self.line_type_classifier.load_model(model_dir_path=os.path.join(model_dir_path, 'line_type'))
 
     def fit(self, training_data_dir_path, model_dir_path, batch_size=None, epochs=None,
             test_size=None,
             random_state=None):
+        line_label_history = self.fit_line_label(training_data_dir_path, model_dir_path=model_dir_path,
+                                                 batch_size=batch_size, epochs=epochs, test_size=test_size,
+                                                 random_state=random_state)
+
+        line_type_history = self.fit_line_type(training_data_dir_path, model_dir_path=model_dir_path,
+                                               batch_size=batch_size, epochs=epochs, test_size=test_size,
+                                               random_state=random_state)
+
+        history = [line_label_history, line_type_history]
+        return history
+
+    def fit_line_label(self, training_data_dir_path, model_dir_path, batch_size=None, epochs=None,
+                       test_size=None,
+                       random_state=None):
         text_data_model = fit_text(training_data_dir_path, label_type='line_label')
         text_label_pairs = load_text_label_pairs(training_data_dir_path, label_type='line_label')
 
@@ -41,7 +57,25 @@ class ResumeParser(object):
         if epochs is None:
             epochs = 20
         history = self.line_label_classifier.fit(text_data_model=text_data_model,
-                                                 model_dir_path=model_dir_path,
+                                                 model_dir_path=os.path.join(model_dir_path, 'line_label'),
+                                                 text_label_pairs=text_label_pairs,
+                                                 batch_size=batch_size, epochs=epochs,
+                                                 test_size=test_size,
+                                                 random_state=random_state)
+        return history
+
+    def fit_line_type(self, training_data_dir_path, model_dir_path, batch_size=None, epochs=None,
+                      test_size=None,
+                      random_state=None):
+        text_data_model = fit_text(training_data_dir_path, label_type='line_type')
+        text_label_pairs = load_text_label_pairs(training_data_dir_path, label_type='line_type')
+
+        if batch_size is None:
+            batch_size = 64
+        if epochs is None:
+            epochs = 20
+        history = self.line_label_classifier.fit(text_data_model=text_data_model,
+                                                 model_dir_path=os.path.join(model_dir_path, 'line_type'),
                                                  text_label_pairs=text_label_pairs,
                                                  batch_size=batch_size, epochs=epochs,
                                                  test_size=test_size,

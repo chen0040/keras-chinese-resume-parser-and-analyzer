@@ -5,6 +5,22 @@ Deep learning project that parses and analyze chinese resumes.
 The objective of this project is to use Keras and Deep Learning such as CNN and recurrent neural network to automate the
 task of parsing a chinese resume. 
 
+
+# Overview
+
+### Parser Features 
+
+* Chinese NLP using SnowNLP
+* Extract chinese texts using pdfminer.six and python-docx from PDF nad DOCX
+* Rule-based resume parser has been implemented.
+
+### Deep Learning Features
+
+* Tkinter-based GUI tool to generate and annotate deep learning training data from pdf and docx files
+* Deep learning multi-class classification using recurrent and cnn networks for
+    * line type: classify each line of text extracted from pdf and docx file on whether it is a header, meta-data, or content
+    * line label classify each line of text extracted from pdf and docx file on whether it implies experience, education, etc.
+    
 The included deep learning models that classify each line in the resume files include:
 
 * [cnn.py](keras_cn_parser_and_analyzer/library/classifiers/cnn.py)
@@ -17,27 +33,7 @@ The included deep learning models that classify each line in the resume files in
 * [lstm.py](keras_cn_parser_and_analyzer/library/classifiers/lstm.py)
     * LSTM with category cross-entropy loss function
     * Bi-directional LSTM/GRU with categorical cross-entropy loss function
-
-### Completed Task:
-
-* At the moment the rule-based resume parser has been implemented.
-* Tkinter-based GUI tool to generate and annotate training data from pdf and docx files
-* Deep learning multi-class classification using recurrent and cnn networks for
-    * line type: classify each line of text extracted from pdf and docx file on whether it is a header, meta-data, or content
-    * line label classify each line of text extracted from pdf and docx file on whether it implies experience, education, etc.
     
-### TO-DO Tasks:
-
-* Train and test the classifiers 
-* Build a deep-learning based resume parser using the classifiers trained
-
-# Overview
-
-### Features 
-
-* Chinese NLP using SnowNLP
-* Extract chinese texts using pdfminer.six and python-docx from PDF nad DOCX
-
 # Usage 1: Rule-based Chinese Resume Parser
 
 The [sample code](demo/rule_base_parser.py) below shows how to scan all the resumes (in PDF and DOCX formats) from a 
@@ -126,7 +122,7 @@ def main():
     random_state = 42
     np.random.seed(random_state)
 
-    output_dir_path = './models/line_label'
+    output_dir_path = './models'
     training_data_dir_path = './data/training_data'
 
     classifier = ResumeParser()
@@ -144,11 +140,28 @@ if __name__ == '__main__':
 
 ```
 
+Upon completion of training, the trained models will be saved in the [demo/models/line_label](demo/models/line_label)
+and [demo/models/line_type](demo/models/line_type) folders
+
+The default line label and line type classifier used in the deep learning ResumeParser is 
+[WordVecBidirectionalLstmSoftmax](keras_cn_parser_and_analyzer/library/classifiers/lstm.py).
+But other classifiers can be used by adding the following line, for example:
+
+```python
+from keras_cn_parser_and_analyzer.library.dl_based_parser import ResumeParser
+from keras_cn_parser_and_analyzer.library.classifiers.cnn_lstm import WordVecCnnLstm
+
+classifier = ResumeParser()
+classifier.line_label_classifier = WordVecCnnLstm()
+classifier.line_type_classifier = WordVecCnnLstm()
+...
+```
+
 (Do make sure that the requirements.txt are satisfied in your python env)
 
 ### Step 3: parse resumes using trained parser
 
-After the trained models are saved in the [demo/models/line_label](demo/models/line_label) folder,
+After the trained models are saved in the [demo/models](demo/models) folder,
 one can use the resume parser to parse the resumes in the [demo/data/resume_samples](demo/data/resume_samples)
 by running the following command:
 
@@ -171,7 +184,7 @@ def main():
         print('parsing file: ', file_path)
 
         parser = ResumeParser()
-        parser.load_model('./models/line_label')
+        parser.load_model('./models')
         parser.parse(file_content)
         print(parser.raw)  # print out the raw contents extracted from pdf or docx files
 

@@ -7,7 +7,7 @@ def main():
     random_state = 42
     np.random.seed(random_state)
 
-    output_dir_path = './models/line_label'
+    output_dir_path = './models'
     training_data_dir_path = './data/training_data'
 
     classifier = ResumeParser()
